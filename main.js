@@ -12,7 +12,7 @@ const options = {
     }
 };
 
-let url = new URL(`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1`)
+let url = new URL(`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1`) // now_playing (현재 상영 중인 영화 데이터 중에 1페이지에 해당하는 20개의 영화 데이터 가져오기 위한 URL, 수정 가능)
  
 
 async function getData() {
