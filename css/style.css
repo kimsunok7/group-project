@@ -1,0 +1,100 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+ul {
+  list-style: none;
+}
+body {
+  background-color: #000;
+  color: #fff;
+}
+#header {
+  margin-top: 20px;
+  border-bottom: 1px solid #fff;
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  font-size: 40px;
+  color: #fff;
+}
+
+.search {
+  background-color: #0d6efd;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+}
+/*menus*/
+#menus {
+  display: flex;
+  justify-content: center;
+}
+#menus button:hover {
+  background: #0d6efd;
+  color: #fff;
+}
+button {
+  border: none;
+  background-color: #fff;
+
+  width: 130px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 20px;
+  margin: 30px;
+}
+
+/*movie-board*/
+.row {
+  justify-content: space-between;
+}
+.movieCard {
+  border: 2px solid #fff;
+  border-radius: 10px;
+  padding-bottom: 10px;
+}
+.movieCard img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.title {
+  margin: 20px 0px;
+}
+.showing {
+  display: flex;
+  justify-content: space-between;
+}
+.grade {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 50%;
+  background-color: #0d6efd;
+  color: #fff;
+  text-align: center;
+  font-size: 10px;
+}
+.date {
+  width: 80px;
+  height: 30px;
+  line-height: 30px;
+  background-color: #0d6efd;
+  color: #fff;
+  text-align: center;
+  font-size: 10px;
+  border-radius: 20px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
