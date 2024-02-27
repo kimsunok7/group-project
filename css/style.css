@@ -65,17 +65,17 @@ body {
 }
 #genre_menus button {
   border: none;
-  background-color: #0d6efd;
+  background-color: #fff;
   border-radius: 20px;
-  color: #fff;
+  color: black;
   margin: 1px;
   padding: 10px;
   font-size: smaller;
   display: inline-block;
 }
 #genre_menus button:hover {
-  background: #fff;
-  color: #0d6efd;
+  background: #0d6efd;
+  color: #fff;
 }
 
 /*movie-board*/
