@@ -39,7 +39,7 @@ body {
   background: #0d6efd;
   color: #fff;
 }
-button {
+#menus button {
   border: none;
   background-color: #fff;
 
@@ -48,6 +48,34 @@ button {
   line-height: 30px;
   border-radius: 20px;
   margin: 30px;
+}
+
+/*genre-menus*/
+.menu-line {
+  margin: 10px;
+}
+
+#genre-menus {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 10px auto;
+}
+#genre_menus button {
+  border: none;
+  background-color: #0d6efd;
+  border-radius: 20px;
+  color: #fff;
+  margin: 1px;
+  padding: 10px;
+  font-size: smaller;
+  display: inline-block;
+}
+#genre_menus button:hover {
+  background: #fff;
+  color: #0d6efd;
 }
 
 /*movie-board*/
