@@ -1,9 +1,12 @@
 import config from "./apikey.js"
 
+let API_ACCESS_TOKEN = config.TMDB_API_ACCESS_TOKEN;
 let url = new URL(`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1`)
 let tmdbImageBaseUrl = "https://image.tmdb.org/t/p/w500";
 
-let API_ACCESS_TOKEN = config.TMDB_API_ACCESS_TOKEN;
+
+let movieObject = {};
+let genreObject = {};
 
 const options = {
     method: 'GET',
@@ -14,8 +17,6 @@ const options = {
 };
 
 
-let movieObject = {};
-let genreObject = {};
 
 /* 장르 버튼 별로 버튼 생성 및 클릭 이벤트 추가 */
 const genreMenus = document.querySelectorAll("#genre_menus button");
@@ -32,6 +33,7 @@ async function getMovieData() {
 };
 
 
+/* TMDB API를 통해 등록되어 있는 장르 id와 장르 이름이 담겨 있는 데이터를 가져오는 함수 */
 async function getGenresList() {
   url = 'https://api.themoviedb.org/3/genre/movie/list?language=en';
   const response = await fetch(url, options);
@@ -43,6 +45,7 @@ async function getGenresList() {
 };
 
 
+/* 클릭한 장르에 해당하는 영화 목록만 필터링해서 렌더링해서 index.html 페이지에 보여주는 함수 */
 function genreFilterRender(event) {
   const genreName = event.target.textContent;
   let genreId = null;
