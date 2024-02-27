@@ -22,6 +22,7 @@ const genreMenus = document.querySelectorAll("#genre_menus button");
 genreMenus.forEach(genre => genre.addEventListener("click", (event) => genreFilterRender(event)));
 
 
+/* TMDB에서 영화 데이터를 가져오는 함수 */
 async function getMovieData() {
     const response = await fetch(url, options);
     
