@@ -104,7 +104,7 @@ function genreFilterRender(event) {
 };
 
 
-
+/* NowPlaying 영화 목록을 렌더링해서 index.html 페이지에 추가하는 함수 */
 function render() {
   let movieHtml = ``;
 
@@ -155,6 +155,8 @@ function render() {
 
 };
 
+
+/* 구현한 함수를 동작 순서대로 담아서 최종 실행하는 main 함수 */
 async function main() {
   movieObject = await getMovieData();
   // console.log(movieObject);
