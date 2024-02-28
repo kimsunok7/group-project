@@ -157,8 +157,19 @@ input:focus {
   border-radius: 20px;
 }
 
-.pagination {
-  display: flex;
+.pagination{
+  display : flex;
   justify-content: center;
   margin-top: 30px;
+}
+
+.page-link{
+  color: black;
+  border: none;
+}
+
+.active2{
+  background-color: white;
+  color : orange;
+  font-weight: 600;
 }
