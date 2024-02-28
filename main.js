@@ -39,6 +39,7 @@ const getMovieData =async()=> {
     movieList = data.results
     totalResult = data.total_results // 전체 개수 불러오기
     totalPage = data.total_pages // 전체 페이지 불러오기
+
     console.log("데이터 확인",data)
     render()
     paginationRender()
@@ -122,54 +123,35 @@ const genreFilterRender=(event)=> {
 
 /* NowPlaying 영화 목록을 렌더링해서 index.html 페이지에 추가하는 함수 */
 const render=()=> {
-  let movieHtml = ``;
-
-  for (let i = 0; i < movieList.length; i += 4) {
-    // console.log(i)
-    let oneRow = 
-    `
-      <div class="row">
-    `
-
-    for (let j = 0; j < 4 && i + j < movieList.length; j++) {
-      let posterUrl = movieList[i+j].poster_path;
-      let tmdbImageUrl = `${tmdbImageBaseUrl}${posterUrl}`
-      // console.log(tmdbImageUrl);
-      let oneMovie =
-      `
-        <div class="col-lg-3 col-md-4 col-sm-6 movieCard">
-
-          <img src="${tmdbImageUrl}">
-
-          <div class="title">
-          ${movieList[i+j].title}
-          </div>
-
-          <div class="showing">
-            <div class="grade">
-              ${movieList[i+j].vote_average}
-            </div>
-            <div class="date">
-              ${movieList[i+j].release_date}
-            </div> 
-          </div>
-
-        </div>
-      `
-      oneRow += oneMovie
-    };
-
-    oneRow += 
-    `
-      </div>
-    `
+  let movieHtml = ''
   
-   movieHtml += oneRow;
-  };
+  for(let i=0;i<movieList.length;i++){
+    movieHtml+=`
+    <div class="col-lg-3 col-md-4 col-sm-6 movieCard">
+    
+    <img src="${tmdbImageBaseUrl}${movieList[i].poster_path}">
+    
+    <div class="title">
+    ${movieList[i].title}
+    </div>
+    
+    <div class="showing">
+      <div class="grade">
+        ${movieList[i].vote_average}
+      </div>
+      <div class="date">
+        ${movieList[i].release_date}
+      </div> 
+    </div>
+    
+    </div>`
+  }
 
-  document.getElementById("movie-board").innerHTML = movieHtml;
+ 
+  document.getElementById("movie-board-input").innerHTML = movieHtml;
 
 };
+
 
 
 /* 구현한 함수를 동작 순서대로 담아서 최종 실행하는 main 함수 */
