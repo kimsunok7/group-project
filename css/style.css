@@ -24,12 +24,6 @@ body {
 
 .search {
   display: flex;
-  /* background-color: #0d6efd;
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
-  text-align: center;
-  border-radius: 50%; */
 }
 
 .searchInput {
@@ -178,4 +172,8 @@ input:focus {
   background-color: white;
   color : orange;
   font-weight: 600;
+}
+
+.header-img{
+  cursor: pointer;
 }
