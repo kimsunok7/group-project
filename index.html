@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>영화검색</title>
   <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -17,7 +17,9 @@
 <body>
   <section class="container">
     <div id="header">
-      <i class="fa-solid fa-video logo"></i>
+      <div class="header-img">
+        <i class="fa-solid fa-video logo"></i>
+      </div>
       <div class="search">
         <input
           class="searchInput"
@@ -29,11 +31,12 @@
       </div>
     </div>
   <section class="menu-line">
-    <div id="movie-container">
     <div id="menus">
       <button id="popular">인기영화</button>
-      <button id="top_rated">추천영화</button>
+      <button id="top_rated" >추천영화</button>
       <button id="now_playing">최신영화</button>
+      <button id="upcoming">상영예정</button>
+
     </div>
     <div id="genre_menus">
       <button>Action</button>
@@ -56,23 +59,21 @@
       <button>War</button>
       <button>Western</button>
     </div>
-  </div>
   </section>
     <section id="movie-board">
-      
+      <div class="row" id="movie-board-input">
+
+      </div>
     </section>
     <nav aria-label="Page navigation example">
       <ul class="pagination">
-        
+              
       </ul>
-    </nav>
-  </section>
+    </section>
 
-
-  <script src="apikey.js"></script>
-  <script src="main.js"></script>
-  <script src="search.js"></script>
-  <script src="category.js"></script>
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    <script src="apikey.js"></script>
+    <script src="main.js"></script>
+    <script src="search.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
