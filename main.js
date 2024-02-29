@@ -1,7 +1,7 @@
-let API_ACCESS_TOKEN = config.TMDB_API_ACCESS_TOKEN;
+let API_ACCESS_TOKEN = config.TMDB_API_ACCESS_TOKEN; //API 토큰 받아오기
 let url = new URL(
-  `https://api.themoviedb.org/3/movie/now_playing?language=ko-KR&region=KR&page=1`
-);
+  `https://api.themoviedb.org/3/movie/now_playing?region=KR&language=ko-KR`
+); //현재 한국에서 상영중인 영화목록(기본셋팅)
 let tmdbImageBaseUrl = "https://image.tmdb.org/t/p/w500";
 
 //선옥작성
@@ -43,7 +43,6 @@ let totalPage = 0;
 let movieList = [];
 let genresList = [];
 
-let movieObject = {};
 let genreObject = {};
 
 const options = {
@@ -178,9 +177,21 @@ const render = () => {
 
     movieHtml += `
     <div class="col-lg-3 col-md-4 col-sm-6 movieCard">
-    
-    <img src="${tmdbImageBaseUrl}${movieList[i].poster_path}">
-    
+      <div class="cardImageArea">
+          <img src="${tmdbImageBaseUrl}${movieList[i].poster_path}">
+          <div class="overview">
+            <p>
+              ${
+                movieList[i].overview == null || movieList[i].overview == ""
+                  ? ""
+                  : movieList[i].overview.length > 200
+                  ? movieList[i].overview.substring(0, 200) + "..."
+                  : movieList[i].overview
+              }
+            </p>
+          </div>
+      </div>
+
     <div class="title">
     ${movieList[i].title}
     </div>
@@ -208,7 +219,7 @@ const render = () => {
 const main = async () => {
   getGenresList();
   url = new URL(
-    `https://api.themoviedb.org/3/movie/now_playing?language=ko-KR&page=1`
+    `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1`
   );
   getMovieData();
 };
