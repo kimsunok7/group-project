@@ -173,3 +173,7 @@ input:focus {
   color : orange;
   font-weight: 600;
 }
+
+.header-img{
+  cursor: pointer;
+}
