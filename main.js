@@ -2,6 +2,8 @@ let API_ACCESS_TOKEN = config.TMDB_API_ACCESS_TOKEN; //API 토큰 받아오기
 let url = new URL(`https://api.themoviedb.org/3/movie/now_playing?region=KR&language=ko-KR`) //현재 한국에서 상영중인 영화목록(기본셋팅)
 let tmdbImageBaseUrl = "https://image.tmdb.org/t/p/w500";
 
+
+
 const pageSize = 20 // 한 페이지에 들어갈 개수
 const groupSize = 10 // pagination 5개씩 묶음
 let page = 1
@@ -78,7 +80,7 @@ const genreFilterRender=(event)=> {
   
   };
 
-  url = new URL(`https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&language=ko-KR&region=KR`)
+  url = new URL(`https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&language=ko-KR&watch_region=KR`)
   getMovieData()
 
 };
@@ -87,10 +89,11 @@ const genreFilterRender=(event)=> {
 /* NowPlaying 영화 목록을 렌더링해서 index.html 페이지에 추가하는 함수 */
 const render=()=> {
   let movieHtml = ''
-  
+  console.log(movieList[0])
   for(let i=0;i<movieList.length;i++){
+    
     movieHtml+=`
-    <div class="col-lg-3 col-md-4 col-sm-6 movieCard">
+    <div class="col-lg-3 col-md-4 col-sm-6 movieCard" onclick="selectMovie(${movieList[i].title})">
     
     <img src="${tmdbImageBaseUrl}${movieList[i].poster_path}">
     
@@ -114,6 +117,10 @@ const render=()=> {
   document.getElementById("movie-board-input").innerHTML = movieHtml;
 
 };
+
+const selectMovie =(movie)=>{
+  console.log(movie)
+}
 
 
 
