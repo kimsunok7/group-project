@@ -128,7 +128,32 @@ input:focus {
   object-fit: contain;
   border-radius: 10px;
   margin-top: 10px;
+  position: relative;
+  z-index: 2;
+  transition-property: opacity;
+  transition-duration: 1s;
 }
+.cardImageArea {
+  position: relative;
+}
+.overview {
+  position: absolute;
+  font-size: x-small;
+  top: 10%;
+  left: 0%;
+  text-align: justify;
+  z-index: 2;
+  margin: 0.5rem;
+  padding: 0.5rem 3.2rem;
+  z-index: 1;
+  /* background-position: inherit; */
+}
+
+.movieCard img:hover {
+  z-index: 0;
+  opacity: 20%;
+}
+
 .title {
   margin: 20px 0px;
 }
@@ -176,4 +201,55 @@ input:focus {
 
 .header-img{
   cursor: pointer;
+}
+
+@media only screen and (min-width: 460px) and (max-width: 575px) {
+  .overview {
+    position: absolute;
+    font-size: x-small;
+    top: 2.5%;
+    left: 0%;
+    text-align: justify;
+    z-index: 2;
+    margin: 0.5rem;
+    padding: 0.5rem 9.5rem;
+    z-index: 1;
+    /* background-position: inherit; */
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
+  .overview {
+    position: absolute;
+    font-size: x-small;
+    top: 10%;
+    left: 0%;
+    text-align: justify;
+    z-index: 2;
+    margin: 0.5rem;
+    padding: 0rem 2rem;
+    z-index: 1;
+    /* background-position: inherit; */
+  }
+}
+
+@media only screen and (min-width: 400px) and (max-width: 459px) {
+  .overview {
+    position: absolute;
+    font-size: x-small;
+    top: 5%;
+    left: 0%;
+    text-align: justify;
+    z-index: 2;
+    margin: 0.5rem;
+    padding: 0.5rem 7.5rem;
+    z-index: 1;
+    /* background-position: inherit; */
+  }
+}
+
+@media only screen and (max-width: 399px) {
+  .overview {
+    display: none;
+  }
 }
