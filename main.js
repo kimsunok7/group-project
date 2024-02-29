@@ -91,9 +91,20 @@ const render=()=> {
   for(let i=0;i<movieList.length;i++){
     movieHtml+=`
     <div class="col-lg-3 col-md-4 col-sm-6 movieCard">
-    
-    <img src="${tmdbImageBaseUrl}${movieList[i].poster_path}">
-    
+      <div class="cardImageArea">
+          <img src="${tmdbImageBaseUrl}${movieList[i].poster_path}">
+          <div class="overview">
+            <p>
+              ${
+                movieList[i].overview == null || movieList[i].overview == ""
+                  ? "" : movieList[i].overview.length > 200
+                  ? movieList[i].overview.substring(0, 200) + "..."
+                  : movieList[i].overview 
+              }
+            </p>
+          </div>
+      </div>
+
     <div class="title">
     ${movieList[i].title}
     </div>
