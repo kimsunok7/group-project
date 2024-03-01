@@ -67,7 +67,7 @@ input:focus {
   display: none;
 }
 .searchInput.active {
-  width: 100px;
+  width: 200px;
   opacity: 1;
 }
 .searchIcon.active {
@@ -175,10 +175,15 @@ input:focus {
 
 .title {
   margin: 20px 0px;
+  text-align: center;
+  word-break: keep-all;
 }
 .showing {
+  width: 65%;
+  margin: 0px auto 20px;
   display: flex;
   justify-content: space-between;
+  word-break: keep-all;
 }
 .grade {
   width: 30px;
@@ -191,12 +196,15 @@ input:focus {
   font-size: 10px;
 }
 .genre {
+  width: 65%;
+  margin: 0px auto;
   border-radius: 20px;
-  background-color: #0d6efd;
+  background-color: #1e3d6b;
   color: #fff;
   text-align: center;
   font-size: 10px;
   padding: 5px 10px;
+  word-break: keep-all;
 }
 .date {
   width: 80px;
@@ -226,20 +234,24 @@ input:focus {
   font-weight: 600;
 }
 
-.header-img{
+.header-img {
   cursor: pointer;
 }
 
 #genre_menus .highlight {
-    background-color: #0d6efd;
-    color: white;
+  background-color: #0d6efd;
+  color: white;
 }
-
-
 
 /* overview의 속성 값을 screen 크기에 맞춰 세팅하는 media query 코드 추가 */
 /* screen 크기가 400px 이하로 내려가면, overview 내용을 보여주지 않음 */
 @media only screen and (min-width: 460px) and (max-width: 575px) {
+  .showing {
+    width: 35%;
+  }
+  .genre {
+    width: 35%;
+  }
   .overview {
     position: absolute;
     font-size: x-small;
@@ -284,5 +296,11 @@ input:focus {
 @media only screen and (max-width: 399px) {
   .overview {
     display: none;
+  }
+}
+
+@media only screen and (min-width: 575px) and (max-width: 1400px) {
+  .title {
+    height: 50px;
   }
 }
