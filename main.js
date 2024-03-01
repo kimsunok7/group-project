@@ -43,7 +43,11 @@ let totalPage = 0;
 let movieList = [];
 let genresList = [];
 
-let genreObject = {};
+
+/* 여러개 장르를 선택할 때, 선택한 장르들의 id 값을 담아줄 변수 selectedGenresList 선언 */
+let selectedGenresList = []
+
+
 
 const options = {
   method: "GET",
@@ -101,51 +105,78 @@ const genreFilterRender = (event) => {
   }
   console.log("id는", genreId);
 
+  // selectedGenresList 배열 안에 선택한 장르의 ID 값을 중복 체크하여 추가하기
+  if (selectedGenresList.length === 0) {
+    selectedGenresList.push(genreId)
+  }
+  else if (selectedGenresList.includes(genreId)) { 
+    selectedGenresList.forEach((id, idx) => {
+      if (id === genreId) {
+        selectedGenresList.splice(idx, 1)
+      }
+    })
+  }
+  else {
+    selectedGenresList.push(genreId)
+  }
+  console.log(selectedGenresList);
+
+  // selectedGenresList 배열 안에 담긴 ID 값을 기반으로 하이라이트 표시하는 함수 호출
+  highlightSelectedGenreButtons();
+  
+
+/* 선택한 여러개의 장르 ID 값을 콤마로 구분해서 URL에 넣도록 수정 */
   url = new URL(
-    `https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&language=ko-KR`
+    `https://api.themoviedb.org/3/discover/movie?with_genres=${selectedGenresList.join(",")}&language=ko-KR`
   );
   getMovieData();
-  // // 클릭한 장르 ID 값과 대응하는 영화 목록만 필터링
-  // for (let i = 0; i < movieObject.length; i++) {
-  //   if (movieObject[i].genre_ids.includes(genreId)){
-  //     genreMovies.push(movieObject[i])
-  //   };
-  // };
-  // console.log(genreMovies);
-
-  // // 장르에 해당하는 영화 목록을 보여주기 위한 HTML 코드 index.html에 추가하기
-  // let movieHtml = ``;
-  // let oneRow = `<div class="row">`;
-
-  // for (let i = 0; i < genreMovies.length; i++) {
-  //     let posterUrl = genreMovies[i].poster_path;
-  //     let tmdbImageUrl = `${tmdbImageBaseUrl}${posterUrl}`;
-
-  //     let oneMovie = `
-  //         <div class="col-lg-3 movieCard">
-  //           <img src="${tmdbImageUrl}">
-  //           <div class="title">${genreMovies[i].title}</div>
-  //           <div class="showing">
-  //             <div class="grade">${genreMovies[i].vote_average}</div>
-  //             <div class="date">${genreMovies[i].release_date}</div>
-  //           </div>
-  //         </div>
-  //     `;
-
-  //     oneRow += oneMovie;
-
-  //     if (((i + 1) % 4) === 0 || i === genreMovies.length - 1) {
-  //         oneRow += `</div>`;
-  //         movieHtml += oneRow;
-
-  //         if (i !== genreMovies.length - 1) {
-  //             oneRow = `<div class="row">`;
-  //         };
-  //     };
-  // };
-
-  // document.getElementById("movie-board").innerHTML = movieHtml;
 };
+
+
+
+/* 선택한 장르의 버튼들만 색깔이 파란색으로 표시되도록 하는 함수 */
+function highlightSelectedGenreButtons() {
+  genreMenus.forEach((genre) => {
+    genre.classList.remove("highlight")
+  });
+
+  if (selectedGenresList.length !== 0) {
+    selectedGenresList.forEach(id => {
+      let genreClassName = "";
+      for (let i = 0; i < genresList.length; i++) {
+        if (id === genresList[i].id) {
+          genreClassName = genresList[i].name
+        }
+      };
+      genreMenus.forEach((genre) => {
+        if (genre.id === genreClassName) {
+          genre.classList.add("highlight")
+          console.log(genre);
+        };
+      });
+    });
+  };
+};
+
+
+/* 리셋 버튼 작업 진행 중 */
+function resetBtn() {
+  const resetButton = document.getElementById("clear")
+  if (selectedGenresList.length === 0) {
+    resetButton.style.display = "none"
+  }
+  else {
+    resetButton.classList.add("highlight")
+    resetButton.addEventListener("click", () => {
+      selectedGenresList = [];
+      genreMenus.forEach((genre) => {
+        genre.classList.remove("highlight");
+      })
+    })
+  }
+}
+
+
 
 /* NowPlaying 영화 목록을 렌더링해서 index.html 페이지에 추가하는 함수 */
 const render = () => {
