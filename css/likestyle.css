@@ -1,0 +1,50 @@
+.likeMovie{
+    width: 250px;
+    height: 250px;
+    color: black;
+    padding : 1em;
+    background-color: white;
+    border: 1px solid lightgrey;
+    z-index:10;
+    border-radius: 30px;
+    position : fixed;
+    display: none;
+}
+.likeMovie-title{
+    padding-bottom: 0.5em;
+    font-weight: 700;
+    text-align: center;
+    border-bottom: 1px solid lightgray;
+}
+
+.likeMovie-list{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid lightgray;
+}
+
+.container1 {
+    /* 중앙 정렬 */
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  
+    /* 높이 지정 */
+    min-height: 32rem;
+  }
+  .draggable {
+    /* 커서를 이동형식으로 주고, 위치를 절대형식으로 지정 */
+    cursor: move;
+    position: absolute;
+    user-select: none;
+  
+    /* 중앙 정렬 */
+    /* align-items: center;
+    display: flex;
+    justify-content: center; */
+  
+    /* 디자인 */
+    /* border: 1px solid #cbd5e0;
+    height: 8rem;
+    width: 8rem; */
+  }

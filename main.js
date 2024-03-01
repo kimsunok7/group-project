@@ -207,7 +207,7 @@ const render = () => {
     let genreNames = genres.join(", ");
 
     movieHtml += `
-    <div class="col-lg-3 col-md-4 col-sm-6 movieCard">
+    <div class="col-lg-3 col-md-4 col-sm-6 movieCard" onclick="selectMovie(movieList[${i}].title)">
       <div class="cardImageArea">
           <img src="${tmdbImageBaseUrl}${movieList[i].poster_path}">
           <div class="overview">
@@ -318,3 +318,27 @@ const moveToPreGroupPage = (pageNum) => {
   page = pageNum - groupSize;
   getMovieData();
 };
+
+const selectMovie = (title) => {
+  console.log("처음",likeLMovieList.length)
+  if(likeLMovieList.length>4){
+    alert("5개까지만 찜이 가능합니다!")
+    return
+  }
+  likeLMovieList.push(title)
+ 
+  likeMovieRender()
+};
+
+const likeMovieRender = ()=>{
+  let likeMovieHTML = ''
+  
+  for(let i=0;i<likeLMovieList.length;i++){
+    likeMovieHTML+=`
+    <div class="likeMovie-list">
+      ${likeLMovieList[i]}
+    </div>
+    `
+  }
+  document.getElementById("likeMovieInput").innerHTML=likeMovieHTML
+}
