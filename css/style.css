@@ -230,6 +230,11 @@ input:focus {
   cursor: pointer;
 }
 
+#genre_menus .highlight {
+    background-color: #0d6efd;
+    color: white;
+}
+
 
 
 /* overview의 속성 값을 screen 크기에 맞춰 세팅하는 media query 코드 추가 */
