@@ -12,7 +12,7 @@ let totalPage=0
 
 let movieList = []
 let genresList = []
-
+let likeLMovieList = []
 let genreObject = {};
 
 const options = {
@@ -66,8 +66,6 @@ const getGenresList=async()=> {
 const genreFilterRender=(event)=> {
   settingInitial()
   const genreName = event.target.textContent;
-  console.log(genreName)
-  console.log("목록",genresList)  
   let genreId = 0;
   let genreMovies = [];
 
@@ -89,15 +87,14 @@ const genreFilterRender=(event)=> {
 /* NowPlaying 영화 목록을 렌더링해서 index.html 페이지에 추가하는 함수 */
 const render=()=> {
   let movieHtml = ''
-  console.log(movieList[0])
   for(let i=0;i<movieList.length;i++){
     
     movieHtml+=`
-    <div class="col-lg-3 col-md-4 col-sm-6 movieCard" onclick="selectMovie(${movieList[i].title})">
+    <div class="col-lg-3 col-md-4 col-sm-6 movieCard" onclick="selectMovie(movieList[${i}].title)">
     
     <img src="${tmdbImageBaseUrl}${movieList[i].poster_path}">
     
-    <div class="title">
+    <div class="title"">
     ${movieList[i].title}
     </div>
     
@@ -118,11 +115,29 @@ const render=()=> {
 
 };
 
-const selectMovie =(movie)=>{
-  console.log(movie)
+const selectMovie = (title) => {
+  console.log("처음",likeLMovieList.length)
+  if(likeLMovieList.length>4){
+    alert("5개까지만 찜이 가능합니다!")
+    return
+  }
+  likeLMovieList.push(title)
+ 
+  likeMovieRender()
+};
+
+const likeMovieRender = ()=>{
+  let likeMovieHTML = ''
+  
+  for(let i=0;i<likeLMovieList.length;i++){
+    likeMovieHTML+=`
+    <div class="likeMovie-list">
+      ${likeLMovieList[i]}
+    </div>
+    `
+  }
+  document.getElementById("likeMovieInput").innerHTML=likeMovieHTML
 }
-
-
 
 
 /* 구현한 함수를 동작 순서대로 담아서 최종 실행하는 main 함수 */
@@ -130,6 +145,7 @@ const main = async()=> {
   settingInitial()
   getGenresList() //장르목록을 가져오는 함수
   url = new URL(`https://api.themoviedb.org/3/movie/now_playing?region=KR&language=ko-KR`)  //현재 한국에서 상영중인 영화목록(기본셋팅)
+  //url = new URL(`https://api.themoviedb.org/3/search/movie?query=황야&language=ko-KR&page=1`) 
   getMovieData()
 };
 
