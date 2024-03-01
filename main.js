@@ -42,6 +42,8 @@ let totalResult = 0;
 let totalPage = 0;
 let movieList = [];
 let genresList = [];
+let likeLMovieList=[]
+let genreObject = {};
 
 
 /* 여러개 장르를 선택할 때, 선택한 장르들의 id 값을 담아줄 변수 selectedGenresList 선언 */
