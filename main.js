@@ -42,14 +42,11 @@ let totalResult = 0;
 let totalPage = 0;
 let movieList = [];
 let genresList = [];
-let likeLMovieList=[]
+let likeLMovieList = [];
 let genreObject = {};
 
-
 /* 여러개 장르를 선택할 때, 선택한 장르들의 id 값을 담아줄 변수 selectedGenresList 선언 */
-let selectedGenresList = []
-
-
+let selectedGenresList = [];
 
 const options = {
   method: "GET",
@@ -109,76 +106,69 @@ const genreFilterRender = (event) => {
 
   // selectedGenresList 배열 안에 선택한 장르의 ID 값을 중복 체크하여 추가하기
   if (selectedGenresList.length === 0) {
-    selectedGenresList.push(genreId)
-  }
-  else if (selectedGenresList.includes(genreId)) { 
+    selectedGenresList.push(genreId);
+  } else if (selectedGenresList.includes(genreId)) {
     selectedGenresList.forEach((id, idx) => {
       if (id === genreId) {
-        selectedGenresList.splice(idx, 1)
+        selectedGenresList.splice(idx, 1);
       }
-    })
-  }
-  else {
-    selectedGenresList.push(genreId)
+    });
+  } else {
+    selectedGenresList.push(genreId);
   }
   console.log(selectedGenresList);
 
   // selectedGenresList 배열 안에 담긴 ID 값을 기반으로 하이라이트 표시하는 함수 호출
   highlightSelectedGenreButtons();
-  
 
-/* 선택한 여러개의 장르 ID 값을 콤마로 구분해서 URL에 넣도록 수정 */
+  /* 선택한 여러개의 장르 ID 값을 콤마로 구분해서 URL에 넣도록 수정 */
   url = new URL(
-    `https://api.themoviedb.org/3/discover/movie?with_genres=${selectedGenresList.join(",")}&language=ko-KR`
+    `https://api.themoviedb.org/3/discover/movie?with_genres=${selectedGenresList.join(
+      ","
+    )}&language=ko-KR`
   );
   getMovieData();
 };
 
-
-
 /* 선택한 장르의 버튼들만 색깔이 파란색으로 표시되도록 하는 함수 */
 function highlightSelectedGenreButtons() {
   genreMenus.forEach((genre) => {
-    genre.classList.remove("highlight")
+    genre.classList.remove("highlight");
   });
 
   if (selectedGenresList.length !== 0) {
-    selectedGenresList.forEach(id => {
+    selectedGenresList.forEach((id) => {
       let genreClassName = "";
       for (let i = 0; i < genresList.length; i++) {
         if (id === genresList[i].id) {
-          genreClassName = genresList[i].name
+          genreClassName = genresList[i].name;
         }
-      };
+      }
       genreMenus.forEach((genre) => {
         if (genre.id === genreClassName) {
-          genre.classList.add("highlight")
+          genre.classList.add("highlight");
           console.log(genre);
-        };
+        }
       });
     });
-  };
-};
-
+  }
+}
 
 /* 리셋 버튼 작업 진행 중 */
 function resetBtn() {
-  const resetButton = document.getElementById("clear")
+  const resetButton = document.getElementById("clear");
   if (selectedGenresList.length === 0) {
-    resetButton.style.display = "none"
-  }
-  else {
-    resetButton.classList.add("highlight")
+    resetButton.style.display = "none";
+  } else {
+    resetButton.classList.add("highlight");
     resetButton.addEventListener("click", () => {
       selectedGenresList = [];
       genreMenus.forEach((genre) => {
         genre.classList.remove("highlight");
-      })
-    })
+      });
+    });
   }
 }
-
-
 
 /* NowPlaying 영화 목록을 렌더링해서 index.html 페이지에 추가하는 함수 */
 const render = () => {
@@ -234,14 +224,14 @@ const render = () => {
     
         ${movieList[i].vote_average.toFixed(1)}
       </div>
-      <div class="genre">
-      ${genreNames}
-      </div>
+     
       <div class="date">
         ${movieList[i].release_date}
       </div> 
     </div>
-    
+    <div class="genre">
+    ${genreNames}
+    </div>
     </div>`;
   }
 
@@ -322,25 +312,25 @@ const moveToPreGroupPage = (pageNum) => {
 };
 
 const selectMovie = (title) => {
-  console.log("처음",likeLMovieList.length)
-  if(likeLMovieList.length>4){
-    alert("5개까지만 찜이 가능합니다!")
-    return
+  console.log("처음", likeLMovieList.length);
+  if (likeLMovieList.length > 4) {
+    alert("5개까지만 찜이 가능합니다!");
+    return;
   }
-  likeLMovieList.push(title)
- 
-  likeMovieRender()
+  likeLMovieList.push(title);
+
+  likeMovieRender();
 };
 
-const likeMovieRender = ()=>{
-  let likeMovieHTML = ''
-  
-  for(let i=0;i<likeLMovieList.length;i++){
-    likeMovieHTML+=`
+const likeMovieRender = () => {
+  let likeMovieHTML = "";
+
+  for (let i = 0; i < likeLMovieList.length; i++) {
+    likeMovieHTML += `
     <div class="likeMovie-list">
       ${likeLMovieList[i]}
     </div>
-    `
+    `;
   }
-  document.getElementById("likeMovieInput").innerHTML=likeMovieHTML
-}
+  document.getElementById("likeMovieInput").innerHTML = likeMovieHTML;
+};
