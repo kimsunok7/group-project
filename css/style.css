@@ -78,15 +78,15 @@ input:focus {
   border-radius: 0px 50% 50% 0px;
 }
 /*menus*/
-#menus {
+.menus {
   display: flex;
   justify-content: center;
 }
-#menus button:hover {
+.menus button:hover {
   background: #0d6efd;
   color: #fff;
 }
-#menus button {
+.menus button {
   border: none;
   background-color: #fff;
 
