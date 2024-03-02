@@ -67,7 +67,7 @@ input:focus {
   display: none;
 }
 .searchInput.active {
-  width: 100px;
+  width: 200px;
   opacity: 1;
 }
 .searchIcon.active {
@@ -174,13 +174,18 @@ input:focus {
 }
 
 .title {
+  height: 50px;
   margin: 20px 0px;
   text-align: center;
   position: relative;
+  word-break: keep-all;
 }
 .showing {
+  width: 100%;
+  margin: 20px auto;
   display: flex;
   justify-content: space-between;
+  word-break: keep-all;
 }
 .grade {
   width: 30px;
@@ -193,12 +198,15 @@ input:focus {
   font-size: 10px;
 }
 .genre {
+  width: 100%;
+  margin: 0px auto;
   border-radius: 20px;
-  background-color: #0d6efd;
+  background-color: #1e3d6b;
   color: #fff;
   text-align: center;
   font-size: 10px;
   padding: 5px 10px;
+  word-break: keep-all;
 }
 .date {
   width: 80px;
@@ -228,30 +236,41 @@ input:focus {
   font-weight: 600;
 }
 
-.header-img{
+.header-img {
   cursor: pointer;
 }
 
 #genre_menus .highlight {
-    background-color: #0d6efd;
-    color: white;
+  background-color: #0d6efd;
+  color: white;
 }
 
-.heart-img{
+.heart-img {
   position: absolute;
-  right : 0px;
-  top :0px;
+  right: 0px;
+  top: 0px;
   color: red;
   cursor: pointer;
 }
 
-.like-add-button{
-  color : red;
+.like-add-button {
+  color: red;
 }
 
 /* overview의 속성 값을 screen 크기에 맞춰 세팅하는 media query 코드 추가 */
 /* screen 크기가 400px 이하로 내려가면, overview 내용을 보여주지 않음 */
 @media only screen and (min-width: 460px) and (max-width: 575px) {
+  .title {
+    width: 35%;
+    height: 30px;
+    margin: 20px auto;
+  }
+  .showing {
+    width: 35%;
+  }
+  .genre {
+    width: 35%;
+  }
   .overview {
     position: absolute;
     font-size: x-small;
@@ -280,6 +299,17 @@ input:focus {
 }
 
 @media only screen and (min-width: 400px) and (max-width: 459px) {
+  .title {
+    width: 35%;
+    height: 30px;
+    margin: 20px auto;
+  }
+  .showing {
+    width: 35%;
+  }
+  .genre {
+    width: 35%;
+  }
   .overview {
     position: absolute;
     font-size: x-small;
@@ -294,6 +324,17 @@ input:focus {
 }
 
 @media only screen and (max-width: 399px) {
+  .title {
+    width: 100%;
+    height: 30px;
+    margin: 20px auto;
+  }
+  .showing {
+    width: 100%;
+  }
+  .genre {
+    width: 100%;
+  }
   .overview {
     display: none;
   }
