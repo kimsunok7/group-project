@@ -105,46 +105,6 @@ const genreFilterRender = (event) => {
     `https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&language=ko-KR`
   );
   getMovieData();
-  // // 클릭한 장르 ID 값과 대응하는 영화 목록만 필터링
-  // for (let i = 0; i < movieObject.length; i++) {
-  //   if (movieObject[i].genre_ids.includes(genreId)){
-  //     genreMovies.push(movieObject[i])
-  //   };
-  // };
-  // console.log(genreMovies);
-
-  // // 장르에 해당하는 영화 목록을 보여주기 위한 HTML 코드 index.html에 추가하기
-  // let movieHtml = ``;
-  // let oneRow = `<div class="row">`;
-
-  // for (let i = 0; i < genreMovies.length; i++) {
-  //     let posterUrl = genreMovies[i].poster_path;
-  //     let tmdbImageUrl = `${tmdbImageBaseUrl}${posterUrl}`;
-
-  //     let oneMovie = `
-  //         <div class="col-lg-3 movieCard">
-  //           <img src="${tmdbImageUrl}">
-  //           <div class="title">${genreMovies[i].title}</div>
-  //           <div class="showing">
-  //             <div class="grade">${genreMovies[i].vote_average}</div>
-  //             <div class="date">${genreMovies[i].release_date}</div>
-  //           </div>
-  //         </div>
-  //     `;
-
-  //     oneRow += oneMovie;
-
-  //     if (((i + 1) % 4) === 0 || i === genreMovies.length - 1) {
-  //         oneRow += `</div>`;
-  //         movieHtml += oneRow;
-
-  //         if (i !== genreMovies.length - 1) {
-  //             oneRow = `<div class="row">`;
-  //         };
-  //     };
-  // };
-
-  // document.getElementById("movie-board").innerHTML = movieHtml;
 };
 
 /* NowPlaying 영화 목록을 렌더링해서 index.html 페이지에 추가하는 함수 */
@@ -219,7 +179,7 @@ const render = () => {
 const main = async () => {
   getGenresList();
   url = new URL(
-    `https://api.themoviedb.org/3/movie/now_playing?language=ko-KR&page=1`
+    `https://api.themoviedb.org/3/movie/now_playing?language=ko-KR&region=KR`
   );
   getMovieData();
 };
