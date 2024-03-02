@@ -216,7 +216,7 @@ const render = () => {
     movieHtml += `
     <div class="col-lg-3 col-md-4 col-sm-6 movieCard">
       <div class="cardImageArea">
-          <img src="${tmdbImageBaseUrl}${movieList[i].poster_path}">
+      <img src="${movieList[i].poster_path ? tmdbImageBaseUrl + movieList[i].poster_path : 'https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-10.png'}">
           <div class="overview">
             <p>
               ${
@@ -276,6 +276,7 @@ const main = async () => {
   url = new URL(
     `https://api.themoviedb.org/3/movie/now_playing?language=ko-KR&region=KR`
   );
+  // url = new URL(`https://api.themoviedb.org/3/movie/popular&with_genres=28`);
   getMovieData();
 };
 

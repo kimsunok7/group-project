@@ -245,8 +245,10 @@ input:focus {
   cursor: pointer;
 }
 
-.like-add-button{
-  color : red;
+.like-add-button {
+  color: red;
+  border: none;
+  background-color: transparent;
 }
 
 /* overview의 속성 값을 screen 크기에 맞춰 세팅하는 media query 코드 추가 */
