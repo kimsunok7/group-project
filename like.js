@@ -18,6 +18,13 @@ const closeSticker = ()=>{
       }
 }
 
+/*찜목록 여는 함수 */
+const openSticker = ()=>{
+  if(mode.style.display === '' || mode.style.display === 'none'){
+      mode.style.display = 'block';
+  }
+}
+
 
 /* 마우스에 따라 sticker가 이동하는 함수 */
 document.addEventListener('DOMContentLoaded', function () {
@@ -80,6 +87,11 @@ const selectMovie = (title) => {
   }
   likeLMovieList.push(title)
  
+  // 찜목록이 한개 이상이면 짐목록 sticker 열기
+  if(likeLMovieList.length>0){
+    openSticker()
+  }
+
   likeMovieRender()
 };
 
