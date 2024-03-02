@@ -241,7 +241,7 @@ const render = () => {
     movieHtml += `
     <div class="col-lg-3 col-md-4 col-sm-6 movieCard">
       <div class="cardImageArea">
-          <img src="${tmdbImageBaseUrl}${movieList[i].poster_path}">
+      <img src="${movieList[i].poster_path ? tmdbImageBaseUrl + movieList[i].poster_path : 'https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-10.png'}">
           <div class="overview">
             <p>
               ${
@@ -297,6 +297,13 @@ const errorRender = (errorMessage) => {
 const main = async () => {
   page = 1;
   getGenresList();
+
+  // 장르 버튼들 하이라이트 되어 있는 것 초기화 및 선택한 장르들의 ID 값을 담고 있는 배열도 초기화
+  genreMenus.forEach((genre) => {
+    genre.classList.remove("highlight");
+  });
+  selectedGenresList = [];
+
   url = new URL(
     `https://api.themoviedb.org/3/movie/now_playing?language=ko-KR&region=KR`
   );
