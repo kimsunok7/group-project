@@ -1,4 +1,3 @@
-
 let likeAddButton = document.querySelector(".like-add-button")
 let mode = document.querySelector(".likeMovie")
 
@@ -14,9 +13,10 @@ const clickSticker = ()=>{
 }
 
 const closeSticker = ()=>{
-    // if(mode.style.display === 'block' ){
-    //     mode.style.display = 'none';
-    // }
+  console.log("클릭")
+    if(mode.style.display === 'block' ){
+        mode.style.display = 'none';
+    }
 }
 
 
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   likeAddButton.addEventListener("click",clickSticker)
-  mode.addEventListener("click",closeSticker)
+  //mode.addEventListener("click",closeSticker)
 
 /* 원하는 영화를 찜하는 함수 */
 const selectMovie = (title) => {
