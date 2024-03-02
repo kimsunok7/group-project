@@ -252,7 +252,7 @@ const render = () => {
 const main = async () => {
   getGenresList();
   url = new URL(
-    `https://api.themoviedb.org/3/movie/now_playing?language=ko-KR&page=1`
+    `https://api.themoviedb.org/3/movie/now_playing?language=ko-KR&region=KR`
   );
   getMovieData();
 };
