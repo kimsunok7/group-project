@@ -214,7 +214,7 @@ const render = () => {
     let genreNames = genres.join(", ");
 
     movieHtml += `
-    <div class="col-lg-3 col-md-4 col-sm-6 movieCard" onclick="selectMovie(movieList[${i}].title)">
+    <div class="col-lg-3 col-md-4 col-sm-6 movieCard">
       <div class="cardImageArea">
           <img src="${tmdbImageBaseUrl}${movieList[i].poster_path}">
           <div class="overview">
@@ -229,11 +229,18 @@ const render = () => {
             </p>
           </div>
       </div>
-
     <div class="title">
-    ${movieList[i].title}
+      <div>
+        ${movieList[i].title}
+      </div>
+      <div class="heart-img"  onclick="selectMovie(movieList[${i}].title)">
+          <i class="fa-solid fa-heart"></i>
+        </div>
+     
     </div>
-   
+    
+
+    
     <div class="showing">
       <div class="grade" style="background-color:${gradeColor}">
     

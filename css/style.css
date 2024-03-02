@@ -175,6 +175,8 @@ input:focus {
 
 .title {
   margin: 20px 0px;
+  text-align: center;
+  position: relative;
 }
 .showing {
   display: flex;
@@ -235,7 +237,13 @@ input:focus {
     color: white;
 }
 
-
+.heart-img{
+  position: absolute;
+  right : 0px;
+  top :0px;
+  color: red;
+  cursor: pointer;
+}
 
 /* overview의 속성 값을 screen 크기에 맞춰 세팅하는 media query 코드 추가 */
 /* screen 크기가 400px 이하로 내려가면, overview 내용을 보여주지 않음 */

@@ -14,9 +14,9 @@ const clickSticker = ()=>{
 
 const closeSticker = ()=>{
   console.log("클릭")
-    if(mode.style.display === 'block' ){
-        mode.style.display = 'none';
-    }
+      if(mode.style.display === 'block' ){
+          mode.style.display = 'none';
+      }
 }
 
 
