@@ -61,17 +61,34 @@ genreMenus.forEach((genre) =>
 
 /* TMDB에서 영화 데이터를 가져오는 함수 */
 const getMovieData = async () => {
-  url.searchParams.set("page", page); // =>&page=page
-  url.searchParams.set("pageSize", pageSize);
-  const response = await fetch(url, options);
-  const data = await response.json();
-  movieList = data.results;
-  totalResult = data.total_results; // 전체 개수 불러오기
-  totalPage = data.total_pages; // 전체 페이지 불러오기
-
-  console.log("데이터 확인", data);
-  render();
-  paginationRender();
+  try{
+    url.searchParams.set("page", page); // =>&page=page
+    url.searchParams.set("pageSize", pageSize);
+  
+    const response = await fetch(url, options);
+    const data = await response.json();
+    if(response.status===200){
+      if(data.results.length===0){
+        throw new Error("No result for this search")
+      }
+      movieList = data.results;
+      totalResult = data.total_results; // 전체 개수 불러오기
+      totalPage = data.total_pages; // 전체 페이지 불러오기
+    
+      console.log("데이터 확인", data);
+      render();
+      paginationRender();
+    }
+    else{
+      throw new Error(data.message)
+    }
+   
+  }
+  catch(error){
+    console.log("error여기맞지?",error.message)
+    errorRender(error.message)
+  }
+ 
 };
 
 /* TMDB API를 통해 등록되어 있는 장르 id와 장르 이름이 담겨 있는 데이터를 가져오는 함수 */
@@ -174,6 +191,16 @@ const render = () => {
 
   document.getElementById("movie-board-input").innerHTML = movieHtml;
 };
+
+//에러날때 에러Render추가
+const errorRender=(errorMessage)=>{
+  console.log("여기 함수시작돼?")
+  const errorHTML = `<div class="alert alert-danger text-center" role="alert">
+  ${errorMessage}
+</div>`
+document.getElementById("movie-board-input").innerHTML = errorHTML;
+
+}
 
 /* 구현한 함수를 동작 순서대로 담아서 최종 실행하는 main 함수 */
 const main = async () => {
