@@ -13,7 +13,6 @@ const clickSticker = ()=>{
 }
 
 const closeSticker = ()=>{
-  console.log("클릭")
       if(mode.style.display === 'block' ){
           mode.style.display = 'none';
       }
@@ -96,4 +95,9 @@ const likeMovieRender = ()=>{
     `
   }
   document.getElementById("likeMovieInput").innerHTML=likeMovieHTML
+}
+
+const likeReset = ()=>{
+  likeLMovieList=[]
+  likeMovieRender()
 }
