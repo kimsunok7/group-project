@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> develop
 let likeAddButton = document.querySelector(".like-add-button")
 let mode = document.querySelector(".likeMovie")
 
@@ -14,6 +17,7 @@ const clickSticker = ()=>{
 }
 
 const closeSticker = ()=>{
+<<<<<<< HEAD
     // if(mode.style.display === 'block' ){
     //     mode.style.display = 'none';
     // }
@@ -22,6 +26,22 @@ const closeSticker = ()=>{
 likeAddButton.addEventListener("click",clickSticker)
 mode.addEventListener("click",closeSticker)
 
+=======
+      if(mode.style.display === 'block' ){
+          mode.style.display = 'none';
+      }
+}
+
+/*찜목록 여는 함수 */
+const openSticker = ()=>{
+  if(mode.style.display === '' || mode.style.display === 'none'){
+      mode.style.display = 'block';
+  }
+}
+
+
+/* 마우스에 따라 sticker가 이동하는 함수 */
+>>>>>>> develop
 document.addEventListener('DOMContentLoaded', function () {
     // 마우스의 위치값 저장
     let x = 0;
@@ -62,4 +82,53 @@ document.addEventListener('DOMContentLoaded', function () {
     };
   
     ele.addEventListener('mousedown', mouseDownHandler);
+<<<<<<< HEAD
   });
+=======
+  });
+
+  likeAddButton.addEventListener("click",clickSticker)
+  //mode.addEventListener("click",closeSticker)
+
+/* 원하는 영화를 찜하는 함수 */
+const selectMovie = (title) => {
+
+  if(likeLMovieList.includes(title)){
+    alert("이미 찜목록에 추가되었습니다!")
+    return
+  }
+
+  // 원하는 영화 개수 control
+  if(likeLMovieList.length>4){
+    alert("5개까지만 찜이 가능합니다!")
+    return
+  }
+  likeLMovieList.push(title)
+ 
+  // 찜목록이 한개 이상이면 짐목록 sticker 열기
+  if(likeLMovieList.length>0){
+    openSticker()
+  }
+
+  likeMovieRender()
+};
+
+/* 찜한 영화를 출력하는 함수 */
+const likeMovieRender = ()=>{
+  let likeMovieHTML = ''
+  
+  for(let i=0;i<likeLMovieList.length;i++){
+    likeMovieHTML+=`
+    <div class="likeMovie-list">
+      ${likeLMovieList[i]}
+    </div>
+    `
+  }
+  document.getElementById("likeMovieInput").innerHTML=likeMovieHTML
+}
+
+const likeReset = ()=>{
+  likeLMovieList=[]
+  likeMovieRender()
+}
+>>>>>>> develop

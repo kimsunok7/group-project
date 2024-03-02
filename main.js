@@ -22,6 +22,7 @@ const getMoviesByKeyword = async () => {
   url = new URL(
     `https://api.themoviedb.org/3/search/movie?query=${keyword}&language=ko-KR`
   );
+<<<<<<< HEAD
 
   try {
     const response = await fetch(url, options);
@@ -31,6 +32,47 @@ const getMoviesByKeyword = async () => {
     render();
   } catch (error) {
     console.error("Error fetching movies:", error);
+=======
+  getMovieData();
+};
+
+// 호진 작성
+
+const menus = document.querySelectorAll(".menus button");
+console.log("mmm", menus);
+
+menus.forEach((menu) =>
+  menu.addEventListener("click", (event) => getMoviesCategory(event))
+);
+
+const getMoviesCategory = async (event) => {
+  const category = event.target.id;
+  console.log("category", category);
+  let url;
+  if (
+    category === "popular" ||
+    category === "top_rated" ||
+    category === "now_playing"
+  ) {
+    url = new URL(`https://api.themoviedb.org/3/movie/${category}`);
+    url.searchParams.append("language", "ko-KR");
+  } else {
+    console.error("Invalid category");
+    return;
+  }
+
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = await response.json();
+    console.log("category", data);
+    movieList = data.results;
+    render();
+  } catch (error) {
+    console.error("There was a problem with the fetch operation:", error);
+>>>>>>> develop
   }
 };
 
@@ -64,6 +106,7 @@ genreMenus.forEach((genre) =>
 
 /* TMDB에서 영화 데이터를 가져오는 함수 */
 const getMovieData = async () => {
+<<<<<<< HEAD
   url.searchParams.set("page", page); // =>&page=page
   url.searchParams.set("pageSize", pageSize);
   const response = await fetch(url, options);
@@ -75,6 +118,32 @@ const getMovieData = async () => {
   console.log("데이터 확인", data);
   render();
   paginationRender();
+=======
+  try {
+    url.searchParams.set("page", page); // =>&page=page
+    url.searchParams.set("pageSize", pageSize);
+
+    const response = await fetch(url, options);
+    const data = await response.json();
+    if (response.status === 200) {
+      if (data.results.length === 0) {
+        throw new Error("No result for this search");
+      }
+      movieList = data.results;
+      totalResult = data.total_results; // 전체 개수 불러오기
+      totalPage = data.total_pages; // 전체 페이지 불러오기
+
+      console.log("데이터 확인", data);
+      render();
+      paginationRender();
+    } else {
+      throw new Error(data.message);
+    }
+  } catch (error) {
+    console.log("error여기맞지?", error.message);
+    errorRender(error.message);
+  }
+>>>>>>> develop
 };
 
 /* TMDB API를 통해 등록되어 있는 장르 id와 장르 이름이 담겨 있는 데이터를 가져오는 함수 */
@@ -89,11 +158,17 @@ const getGenresList = async () => {
 
 /* 클릭한 장르에 해당하는 영화 목록만 필터링해서 렌더링해서 index.html 페이지에 보여주는 함수 */
 const genreFilterRender = (event) => {
+<<<<<<< HEAD
   const genreName = event.target.textContent;
   console.log("장르", genreName);
   console.log("목록", genresList);
   let genreId = 0;
   let genreMovies = [];
+=======
+  page = 1; // 장르를 누르면 1페이지로 초기설정
+  const genreName = event.target.textContent;
+  let genreId = 0;
+>>>>>>> develop
 
   // 클릭한 장르 텍스트를 의미하는 ID 값 찾기
   for (let i = 0; i < genresList.length; i++) {
@@ -102,7 +177,10 @@ const genreFilterRender = (event) => {
       break;
     }
   }
+<<<<<<< HEAD
   console.log("id는", genreId);
+=======
+>>>>>>> develop
 
   // selectedGenresList 배열 안에 선택한 장르의 ID 값을 중복 체크하여 추가하기
   if (selectedGenresList.length === 0) {
@@ -147,7 +225,10 @@ function highlightSelectedGenreButtons() {
       genreMenus.forEach((genre) => {
         if (genre.id === genreClassName) {
           genre.classList.add("highlight");
+<<<<<<< HEAD
           console.log(genre);
+=======
+>>>>>>> develop
         }
       });
     });
@@ -172,6 +253,10 @@ function resetBtn() {
 
 /* NowPlaying 영화 목록을 렌더링해서 index.html 페이지에 추가하는 함수 */
 const render = () => {
+<<<<<<< HEAD
+=======
+  searchInput.value = ""; //입력창 초기화
+>>>>>>> develop
   let movieHtml = "";
 
   for (let i = 0; i < movieList.length; i++) {
@@ -199,9 +284,15 @@ const render = () => {
     let genreNames = genres.join(", ");
 
     movieHtml += `
+<<<<<<< HEAD
     <div class="col-lg-3 col-md-4 col-sm-6 movieCard" onclick="selectMovie(movieList[${i}].title)">
       <div class="cardImageArea">
           <img src="${tmdbImageBaseUrl}${movieList[i].poster_path}">
+=======
+    <div class="col-lg-3 col-md-4 col-sm-6 movieCard">
+      <div class="cardImageArea">
+      <img src="${movieList[i].poster_path ? tmdbImageBaseUrl + movieList[i].poster_path : 'https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-10.png'}">
+>>>>>>> develop
           <div class="overview">
             <p>
               ${
@@ -214,35 +305,84 @@ const render = () => {
             </p>
           </div>
       </div>
+<<<<<<< HEAD
 
     <div class="title">
     ${movieList[i].title}
     </div>
    
+=======
+    <div class="title">
+      <div>
+        ${movieList[i].title}
+      </div>
+      <div class="heart-img"  onclick="selectMovie(movieList[${i}].title)">
+          <i class="fa-solid fa-heart"></i>
+        </div>
+     
+    </div>
+    
+
+    <div class="genre">
+      ${genreNames}
+      </div>
+>>>>>>> develop
     <div class="showing">
       <div class="grade" style="background-color:${gradeColor}">
     
         ${movieList[i].vote_average.toFixed(1)}
       </div>
+<<<<<<< HEAD
      
+=======
+      
+>>>>>>> develop
       <div class="date">
         ${movieList[i].release_date}
       </div> 
     </div>
+<<<<<<< HEAD
     <div class="genre">
     ${genreNames}
     </div>
+=======
+    
+>>>>>>> develop
     </div>`;
   }
 
   document.getElementById("movie-board-input").innerHTML = movieHtml;
 };
 
+<<<<<<< HEAD
 /* 구현한 함수를 동작 순서대로 담아서 최종 실행하는 main 함수 */
 const main = async () => {
   getGenresList();
   url = new URL(
     `https://api.themoviedb.org/3/movie/now_playing?language=ko-KR&page=1`
+=======
+//에러날때 에러Render추가
+const errorRender = (errorMessage) => {
+  const errorHTML = `<div class="alert alert-danger text-center" role="alert">
+  ${errorMessage}
+</div>`;
+  document.getElementById("movie-board-input").innerHTML = errorHTML;
+};
+
+/* 구현한 함수를 동작 순서대로 담아서 최종 실행하는 main 함수 */
+const main = async () => {
+  page = 1;
+  getGenresList();
+
+  // 장르 버튼들 하이라이트 되어 있는 것 초기화 및 선택한 장르들의 ID 값을 담고 있는 배열도 초기화
+  genreMenus.forEach((genre) => {
+    genre.classList.remove("highlight");
+  });
+  selectedGenresList = [];
+
+  url = new URL(
+    `https://api.themoviedb.org/3/movie/now_playing?language=ko-KR&region=KR`
+>>>>>>> develop
   );
   getMovieData();
 };
@@ -295,7 +435,10 @@ const paginationRender = () => {
 //클릭한 page로 넘어가는 함수
 const moveToPage = (pageNum) => {
   page = pageNum;
+<<<<<<< HEAD
   console.log("페이지", page);
+=======
+>>>>>>> develop
   getMovieData();
 };
 
@@ -310,6 +453,7 @@ const moveToPreGroupPage = (pageNum) => {
   page = pageNum - groupSize;
   getMovieData();
 };
+<<<<<<< HEAD
 
 const selectMovie = (title) => {
   console.log("처음", likeLMovieList.length);
@@ -334,3 +478,5 @@ const likeMovieRender = () => {
   }
   document.getElementById("likeMovieInput").innerHTML = likeMovieHTML;
 };
+=======
+>>>>>>> develop
