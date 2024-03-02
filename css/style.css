@@ -245,6 +245,10 @@ input:focus {
   cursor: pointer;
 }
 
+.like-add-button{
+  color : red;
+}
+
 /* overview의 속성 값을 screen 크기에 맞춰 세팅하는 media query 코드 추가 */
 /* screen 크기가 400px 이하로 내려가면, overview 내용을 보여주지 않음 */
 @media only screen and (min-width: 460px) and (max-width: 575px) {
