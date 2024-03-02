@@ -25,6 +25,41 @@ const getMoviesByKeyword = async () => {
   getMovieData()
 };
 
+// 호진 작성 
+
+const menus = document.querySelectorAll(".menus button");
+console.log("mmm", menus);
+
+menus.forEach(menu => menu.addEventListener("click",(event) => getMoviesCategory(event)));
+
+const getMoviesCategory = async (event) => {
+    const category = event.target.id;
+    console.log("category", category);
+    let url;
+    if (category === 'popular' || category === 'top_rated' || category === 'now_playing') {
+        url = new URL(`https://api.themoviedb.org/3/movie/${category}`);
+        url.searchParams.append('language', 'ko-KR');
+    } else {
+        console.error('Invalid category');
+        return;
+    }
+
+    try {
+        const response = await fetch(url,options);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        console.log("category", data);
+        movieList = data.results;
+        render();
+    } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+    }
+};
+
+
+
 // 수영작성
 const pageSize = 20; // 한 페이지에 들어갈 개수
 const groupSize = 10; // pagination 5개씩 묶음
