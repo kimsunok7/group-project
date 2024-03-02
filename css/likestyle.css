@@ -69,3 +69,7 @@
     right : 3px;
     bottom : 20px;
   }
+
+  .reset-button{
+    cursor: pointer;
+  }
