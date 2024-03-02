@@ -10,11 +10,17 @@
     position : fixed;
     display: none;
 }
+.likeMovie-header{
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
 .likeMovie-title{
     padding-bottom: 0.5em;
     font-weight: 700;
     text-align: center;
     border-bottom: 1px solid lightgray;
+    width: 100%;
 }
 
 .likeMovie-list{
@@ -47,4 +53,19 @@
     /* border: 1px solid #cbd5e0;
     height: 8rem;
     width: 8rem; */
+  }
+
+  .line{
+    border : 1px solid red;
+  }
+
+  .closebtn{
+    width: 28px;
+    height: 28px;
+    font-size: 25px;
+    background-color:transparent;
+    border: none;
+    position: absolute;
+    right : 3px;
+    bottom : 20px;
   }
