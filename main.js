@@ -22,16 +22,7 @@ const getMoviesByKeyword = async () => {
   url = new URL(
     `https://api.themoviedb.org/3/search/movie?query=${keyword}&language=ko-KR`
   );
-
-  try {
-    const response = await fetch(url, options);
-    const data = await response.json();
-    console.log("keyword", data);
-    movieList = data.results;
-    render();
-  } catch (error) {
-    console.error("Error fetching movies:", error);
-  }
+  getMovieData()
 };
 
 // 수영작성
@@ -109,11 +100,9 @@ const getGenresList = async () => {
 
 /* 클릭한 장르에 해당하는 영화 목록만 필터링해서 렌더링해서 index.html 페이지에 보여주는 함수 */
 const genreFilterRender = (event) => {
+  page=1; // 장르를 누르면 1페이지로 초기설정
   const genreName = event.target.textContent;
-  console.log("장르", genreName);
-  console.log("목록", genresList);
   let genreId = 0;
-  let genreMovies = [];
 
   // 클릭한 장르 텍스트를 의미하는 ID 값 찾기
   for (let i = 0; i < genresList.length; i++) {
@@ -122,7 +111,6 @@ const genreFilterRender = (event) => {
       break;
     }
   }
-  console.log("id는", genreId);
 
   // selectedGenresList 배열 안에 선택한 장르의 ID 값을 중복 체크하여 추가하기
   if (selectedGenresList.length === 0) {
@@ -170,7 +158,6 @@ function highlightSelectedGenreButtons() {
       genreMenus.forEach((genre) => {
         if (genre.id === genreClassName) {
           genre.classList.add("highlight")
-          console.log(genre);
         };
       });
     });
@@ -199,6 +186,7 @@ function resetBtn() {
 
 /* NowPlaying 영화 목록을 렌더링해서 index.html 페이지에 추가하는 함수 */
 const render = () => {
+  searchInput.value='' //입력창 초기화
   let movieHtml = "";
 
   for (let i = 0; i < movieList.length; i++) {
@@ -267,7 +255,6 @@ const render = () => {
 
 //에러날때 에러Render추가
 const errorRender=(errorMessage)=>{
-  console.log("여기 함수시작돼?")
   const errorHTML = `<div class="alert alert-danger text-center" role="alert">
   ${errorMessage}
 </div>`
@@ -277,6 +264,7 @@ document.getElementById("movie-board-input").innerHTML = errorHTML;
 
 /* 구현한 함수를 동작 순서대로 담아서 최종 실행하는 main 함수 */
 const main = async () => {
+  page=1;
   getGenresList();
   url = new URL(
     `https://api.themoviedb.org/3/movie/now_playing?language=ko-KR&region=KR`
@@ -332,7 +320,6 @@ const paginationRender = () => {
 //클릭한 page로 넘어가는 함수
 const moveToPage = (pageNum) => {
   page = pageNum;
-  console.log("페이지", page);
   getMovieData();
 };
 
@@ -347,27 +334,3 @@ const moveToPreGroupPage = (pageNum) => {
   page = pageNum - groupSize;
   getMovieData();
 };
-
-const selectMovie = (title) => {
-  console.log("처음",likeLMovieList.length)
-  if(likeLMovieList.length>4){
-    alert("5개까지만 찜이 가능합니다!")
-    return
-  }
-  likeLMovieList.push(title)
- 
-  likeMovieRender()
-};
-
-const likeMovieRender = ()=>{
-  let likeMovieHTML = ''
-  
-  for(let i=0;i<likeLMovieList.length;i++){
-    likeMovieHTML+=`
-    <div class="likeMovie-list">
-      ${likeLMovieList[i]}
-    </div>
-    `
-  }
-  document.getElementById("likeMovieInput").innerHTML=likeMovieHTML
-}
