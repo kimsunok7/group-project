@@ -4,6 +4,9 @@ let url = new URL(
 ); //현재 한국에서 상영중인 영화목록(기본셋팅)
 let tmdbImageBaseUrl = "https://image.tmdb.org/t/p/w500";
 
+let checkMenus = document.querySelector(".menus")
+let checkGenres = document.getElementById("genre_menus")
+
 //선옥작성
 const searchIcon = document.querySelector(".searchIcon");
 const search2Icon = document.querySelector(".search2Icon");
@@ -305,6 +308,11 @@ const errorRender = (errorMessage) => {
 
 /* 구현한 함수를 동작 순서대로 담아서 최종 실행하는 main 함수 */
 const main = async () => {
+
+  //카테고리 부분 초기화
+  checkGenres.style.display='none'
+  checkMenus.style.display='none'
+  
   page = 1;
   getGenresList();
 
@@ -317,6 +325,7 @@ const main = async () => {
   url = new URL(
     `https://api.themoviedb.org/3/movie/now_playing?language=ko-KR&region=KR`
   );
+  // url = new URL(`https://api.themoviedb.org/3/movie/popular&with_genres=28`);
   getMovieData();
 };
 
@@ -382,3 +391,32 @@ const moveToPreGroupPage = (pageNum) => {
   page = pageNum - groupSize;
   getMovieData();
 };
+
+
+
+/*카테고리를 눌렀을 때 인기 추천 최신이 나오는 함수 */
+const openMenus = ()=>{
+  if(checkMenus.style.display=="" || checkMenus.style.display=='none'){
+    checkMenus.style.display = 'flex'
+  }
+  else{
+    checkMenus.style.display='none'
+  }
+  if(checkGenres.style.display == 'flex'){
+    checkGenres.style.display='none'
+  }
+}
+
+/*장르를 눌렀을 때 장르목록이 나오는 함수 */
+const openGenre = ()=>{
+  if(checkGenres.style.display=="" || checkGenres.style.display=='none'){
+    checkGenres.style.display = 'flex'
+    console.log(checkGenres.style.display)
+  }
+  else{
+    checkGenres.style.display='none'
+  }
+  if(checkMenus.style.display == 'flex'){
+    checkMenus.style.display='none'
+  }
+}

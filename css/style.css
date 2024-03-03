@@ -79,8 +79,9 @@ input:focus {
 }
 /*menus*/
 .menus {
-  display: flex;
+  display: none;
   justify-content: center;
+  margin-bottom: 20px;
 }
 .menus button:hover {
   background: #0d6efd;
@@ -89,12 +90,11 @@ input:focus {
 .menus button {
   border: none;
   background-color: #fff;
-
   width: 130px;
   height: 30px;
   line-height: 30px;
   border-radius: 20px;
-  margin: 30px;
+  margin : 0 10px;
 }
 
 /*genre-menus*/
@@ -102,9 +102,11 @@ input:focus {
   margin: 10px;
 }
 
-#genre-menus {
-  width: 80%;
-  display: flex;
+
+
+#genre_menus {
+  width: 100%;
+  display: none;
   justify-content: center;
   flex-wrap: wrap;
   align-items: center;
@@ -115,10 +117,9 @@ input:focus {
   background-color: #fff;
   border-radius: 20px;
   color: black;
-  margin: 1px;
+  margin: 3px;
   padding: 10px;
   font-size: smaller;
-  display: inline-block;
 }
 #genre_menus button:hover {
   background: #0d6efd;
@@ -184,7 +185,7 @@ input:focus {
   width: 100%;
   margin: 20px auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   word-break: keep-all;
 }
 .grade {
@@ -196,6 +197,7 @@ input:focus {
   color: #fff;
   text-align: center;
   font-size: 10px;
+  margin-right: 10px;
 }
 .genre {
   width: 100%;
@@ -338,4 +340,25 @@ input:focus {
   .overview {
     display: none;
   }
+}
+
+.main-menus button:hover {
+  background: #0d6efd;
+  color: #fff;
+}
+.main-menus button {
+  border: none;
+  background-color: #fff;
+  width: 130px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.main-menus{
+  display : flex;
+  justify-content: center;
+  margin-bottom: 20px;
 }
