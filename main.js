@@ -16,6 +16,12 @@ searchIcon.addEventListener("click", () => {
   search2Icon.classList.add("active");
 });
 
+window.enterkeySearch = () => {
+  if (window.event.keyCode == 13) {
+    getMoviesByKeyword();
+  }
+};
+
 const getMoviesByKeyword = async () => {
   const keyword = searchInput.value;
   console.log("keyword", keyword);
@@ -241,7 +247,11 @@ const render = () => {
     movieHtml += `
     <div class="col-lg-3 col-md-4 col-sm-6 movieCard">
       <div class="cardImageArea">
-      <img src="${movieList[i].poster_path ? tmdbImageBaseUrl + movieList[i].poster_path : 'https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-10.png'}">
+      <img src="${
+        movieList[i].poster_path
+          ? tmdbImageBaseUrl + movieList[i].poster_path
+          : "https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-10.png"
+      }">
           <div class="overview">
             <p>
               ${
