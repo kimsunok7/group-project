@@ -315,6 +315,7 @@ const main = async () => {
   url = new URL(
     `https://api.themoviedb.org/3/movie/now_playing?language=ko-KR&region=KR`
   );
+  // url = new URL(`https://api.themoviedb.org/3/movie/popular&with_genres=28`);
   getMovieData();
 };
 
@@ -380,6 +381,8 @@ const moveToPreGroupPage = (pageNum) => {
   page = pageNum - groupSize;
   getMovieData();
 };
+
+
 
 /*카테고리를 눌렀을 때 인기 추천 최신이 나오는 함수 */
 const openMenus = ()=>{
